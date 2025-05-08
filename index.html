@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlassian Project Estimators</title>
+    <!-- You can link to your existing style.css or create a new one for the landing page -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Additional styles specific to the landing page can go here or in a new CSS file */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .estimator-buttons a {
+            display: inline-block;
+            margin: 15px;
+            padding: 20px 40px;
+            font-size: 1.2em;
+            text-decoration: none;
+            color: white;
+            background-color: #0052cc; /* Atlassian blue */
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .estimator-buttons a:hover {
+            background-color: #003b93;
+        }
+    </style>
+</head>
+<body>
+    <div class="container"> <!-- You can reuse the .container class from your existing style.css -->
+        <h1>Welcome to Atlassian Project Estimators</h1>
+        <p>Please select the type of estimation you'd like to perform:</p>
+
+        <div class="estimator-buttons">
+            <a href="jsm-estimator.html">Jira Service Management Estimator</a>
+            <!-- When you build the Jira Software estimator, the link will look like this: -->
+            <!-- <a href="jira-software-estimator.html">Jira Software Implementation Estimator</a> -->
+            <a href="#" style="background-color: #ccc; cursor: not-allowed;" title="Coming Soon!">Jira Software Implementation Estimator (Coming Soon)</a>
+        </div>
+    </div>
+</body>
+</html>

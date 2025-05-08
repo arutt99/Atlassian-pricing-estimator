@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jira Software Estimation Summary</title>
+    <link rel="stylesheet" href="style.css"> <!-- Reusing main stylesheet -->
+</head>
+<body>
+    <div class="container">
+        <h1>Jira Software Estimation Summary</h1>
+
+        <table id="summary-table">
+            <thead>
+                <tr>
+                    <th>Project/Team Name</th>
+                    <th>Selections / Details</th>
+                    <th>Total Hours</th>
+                    <th>Total Cost (@ $250/hr)</th> <!-- Assuming same rate -->
+                </tr>
+            </thead>
+            <tbody id="summary-body">
+                <tr><td colspan="4">Loading summary data...</td></tr>
+            </tbody>
+             <tfoot>
+                <tr>
+                    <td colspan="2" style="text-align:right; font-weight:bold; padding-right: 10px;">Grand Total:</td>
+                    <td id="grand-total-hours" style="font-weight:bold; text-align:center;">0</td>
+                    <td id="grand-total-cost" style="font-weight:bold; text-align:center;">$0.00</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <button id="back-to-estimator-btn">Back to Jira Software Estimator</button>
+        <button id="back-to-landing-btn-summary">Back to All Estimator Types</button>
+    </div>
+
+    <script src="jira-software-summary.js"></script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jira Software Pricing Estimator</title>
+    <link rel="stylesheet" href="style.css"> <!-- Reusing the main stylesheet -->
+</head>
+<body>
+    <div class="container">
+        <h1>Jira Software Implementation Estimator</h1>
+
+        <div class="team-management">
+            <label for="team-name-input">Project/Team Name:</label>
+            <input type="text" id="team-name-input" placeholder="Enter project/team name...">
+            <button id="add-team-btn">Add New Project/Team</button>
+
+            <label for="team-select">Select Project/Team:</label>
+            <select id="team-select">
+                <option value="">-- Select a Project/Team --</option>
+            </select>
+            <button id="delete-team-btn">Delete Selected Project/Team</button>
+        </div>
+
+        <form id="estimator-form">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Project Phase</th>
+                        <th>N/A / Basic</th>
+                        <th>Complexity Score: 1 / Standard</th>
+                        <th>Complexity Score: 2 / Advanced</th>
+                        <th>Complexity Score: 3 / Complex</th>
+                    </tr>
+                </thead>
+                <tbody id="estimator-tbody">
+                    <tr data-phase-key="sw-discovery" class="custom-hours-row">
+                        <td>Initiation & Discovery</td>
+                        <td colspan="4" class="custom-hours-cell">
+                            <input type="number" id="sw-discovery-hours-input" value="30" min="0" class="custom-phase-hours-input"> Hours
+                        </td>
+                    </tr>
+
+                    <tr data-phase-key="sw-setup" data-hours='{"na": 0, "cs1": 70, "cs2": 105, "cs3": 140}'>
+                        <td>Jira Software Setup (Includes training)</td>
+                        <td class="selectable-cell" data-value="na">N/A (Not in scope)</td>
+                        <td class="selectable-cell" data-value="cs1">
+                            <ul>
+                                <li>Out of the box Scrum/Kanban boards</li>
+                                <li>Simple permission schemes and work item types</li>
+                                <li>No custom workflows or advanced field setups</li>
+                                <li>Minimal reporting; built-in dashboards</li>
+                                <li>No automation, integrations, or significant training (beyond basic setup)</li>
+                            </ul>
+                        </td>
+                        <td class="selectable-cell" data-value="cs2">
+                            <ul>
+                                <li>Custom workflows and screens</li>
+                                <li>Configured permission and notification schemes</li>
+                                <li>Moderate automation</li>
+                                <li>Simple dashboards with some custom filters or gadgets</li>
+                                <li>Team-level training and documentation support</li>
+                            </ul>
+                        </td>
+                        <td class="selectable-cell" data-value="cs3">
+                            <ul>
+                                <li>Multiple projects</li>
+                                <li>Advanced workflows with conditions, validators, etc.</li>
+                                <li>Extensive automation</li>
+                                <li>Advanced reporting and dashboards</li>
+                                <li>Comprehensive training</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr data-phase-key="sw-confluence" data-hours='{"na": 0, "cs1": 30, "cs2": 45, "cs3": 60}'>
+                        <td>Confluence</td>
+                        <td class="selectable-cell" data-value="na">N/A</td>
+                        <td class="selectable-cell" data-value="cs1">Basic Confluence space with linked pages</td>
+                        <td class="selectable-cell" data-value="cs2">Structured documentation, templates, and permissions</td>
+                        <td class="selectable-cell" data-value="cs3">Full content lifecycle, analytics, architecture</td>
+                    </tr>
+
+                    <tr data-phase-key="sw-board-workflow" data-hours='{"na": 0, "cs1": 20, "cs2": 30, "cs3": 40}'>
+                        <td>Board & Workflow Configuration</td>
+                        <td class="selectable-cell" data-value="na">N/A</td>
+                        <td class="selectable-cell" data-value="cs1">Basic board setup, minor workflow tweaks.</td>
+                        <td class="selectable-cell" data-value="cs2">Custom boards for different teams/processes, moderately complex workflow configuration.</td>
+                        <td class="selectable-cell" data-value="cs3">Multiple complex boards, advanced workflow automation, cross-project workflow needs.</td>
+                    </tr>
+
+                    <tr data-phase-key="sw-plans" data-hours='{"na": 0, "cs1": 20, "cs2": 30, "cs3": 40}'>
+                        <td>Plans Configuration</td>
+                        <td class="selectable-cell" data-value="na">N/A</td>
+                        <td class="selectable-cell" data-value="cs1">Basic setup of Jira Software Plans (Advanced Roadmaps) for one or two teams/projects.</td>
+                        <td class="selectable-cell" data-value="cs2">Configuration for multiple teams, hierarchy setup, basic dependency mapping.</td>
+                        <td class="selectable-cell" data-value="cs3">Complex portfolio planning, scenario planning, capacity management, advanced reporting from Plans.</td>
+                    </tr>
+
+                    <tr data-phase-key="sw-adv-reporting" data-hours='{"na": 0, "cs1": 0, "cs2": 0, "cs3": 0}'> <!-- Hours not specified, assuming user defines or these are covered elsewhere initially. Set to 0, but make selectable for future updates. -->
+                        <td>Advanced Reporting & Dashboards</td>
+                        <td class="selectable-cell" data-value="na">N/A (Covered by Jira Setup)</td>
+                        <td class="selectable-cell" data-value="cs1">Standard built-in reporting, few custom JQL dashboards. (Likely part of CS1 Jira Setup)</td>
+                        <td class="selectable-cell" data-value="cs2">Multiple custom dashboards, use of marketplace reporting apps (basic config).</td>
+                        <td class="selectable-cell" data-value="cs3">Complex custom reporting, BI tool integration, advanced EazyBI or similar app configuration.</td>
+                    </tr>
+
+                    <tr data-phase-key="sw-automation" data-hours='{"na": 0, "cs1": 20, "cs2": 30, "cs3": 40}'>
+                        <td>Automation</td>
+                        <td class="selectable-cell" data-value="na">N/A (Minimal or covered by Jira Setup)</td>
+                        <td class="selectable-cell" data-value="cs1">Basic Jira Automation rules for simple tasks.</td>
+                        <td class="selectable-cell" data-value="cs2">Multiple automation rules, some complexity, cross-project rules.</td>
+                        <td class="selectable-cell" data-value="cs3">Extensive and complex automation, integration with external systems via automation.</td>
+                    </tr>
+
+                    <tr data-phase-key="sw-devops-int" data-hours='{"na": 0, "cs1": 40, "cs2": 60, "cs3": 80}'>
+                        <td>DevOps Integration (Bitbucket)</td>
+                        <td class="selectable-cell" data-value="na">N/A</td>
+                        <td class="selectable-cell" data-value="cs1">Basic Bitbucket integration for linking commits, branches, PRs.</td>
+                        <td class="selectable-cell" data-value="cs2">Integration with Bitbucket Pipelines, deployment information in Jira.</td>
+                        <td class="selectable-cell" data-value="cs3">Advanced integration, automation based on DevOps events, multiple repositories/complex setups.</td>
+                    </tr>
+
+                    <tr data-phase-key="sw-data-migration" data-hours='{"na": 0, "cs1": 20, "cs2": 30, "cs3": 40}'>
+                        <td>Data Migration</td>
+                        <td class="selectable-cell" data-value="na">N/A</td>
+                        <td class="selectable-cell" data-value="cs1">Simple data import from CSV or another Jira instance (few projects).</td>
+                        <td class="selectable-cell" data-value="cs2">Migration from a different tool, moderate data complexity, mapping users/fields.</td>
+                        <td class="selectable-cell" data-value="cs3">Complex migration, large data volumes, data transformation, historical data.</td>
+                    </tr>
+                    <tr data-phase-key="sw-third-party-apps" data-hours='{"na": 0, "cs1": 30, "cs2": 40, "cs3": 60}'>
+                        <td>Third-Party Apps</td>
+                        <td class="selectable-cell" data-value="na">N/A</td>
+                        <td class="selectable-cell" data-value="cs1">Installation and basic configuration of 1-2 simple marketplace apps.</td>
+                        <td class="selectable-cell" data-value="cs2">Configuration of multiple apps or 1-2 more complex apps requiring setup.</td>
+                        <td class="selectable-cell" data-value="cs3">Installation and complex configuration of multiple advanced apps, app data migration, or custom scripting for apps.</td>
+                    </tr>
+                    <tr data-phase-key="sw-extra-training" data-hours='{"na": 0, "cs1": 20, "cs2": 40, "cs3": 60}'>
+                        <td>Extra Training</td>
+                        <td class="selectable-cell" data-value="na">N/A (Training included in Setup)</td>
+                        <td class="selectable-cell" data-value="cs1">Focused training session for a specific role or advanced feature (small group).</td>
+                        <td class="selectable-cell" data-value="cs2">Multiple training sessions for different user groups or roles.</td>
+                        <td class="selectable-cell" data-value="cs3">Comprehensive, tailored training program, train-the-trainer, extensive custom materials.</td>
+                    </tr>
+
+                    <tr data-phase-key="sw-production-release" class="custom-hours-row">
+                        <td>Production Release</td>
+                         <td colspan="4" class="custom-hours-cell">
+                            <input type="number" id="sw-release-hours-input" value="25" min="0" class="custom-phase-hours-input"> Hours
+                         </td>
+                    </tr>
+                    <tr data-phase-key="sw-warranty" class="custom-hours-row">
+                        <td>Warranty</td>
+                        <td colspan="4" class="custom-hours-cell">
+                            <input type="number" id="sw-warranty-hours-input" value="20" min="0" class="custom-phase-hours-input"> Hours
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="misc-hours">
+                <label for="misc-hours-input">Misc. Hours (PM, Meetings, Ad-hoc):</label>
+                <input type="number" id="misc-hours-input" value="0" min="0">
+            </div>
+
+            <div class="total-hours">
+                <h2>Total Estimated Hours: <span id="total-hours-display">0</span></h2>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" id="view-summary-btn">View Summary</button>
+                <button type="button" id="clear-all-btn">Clear All Data & Reset</button>
+                <button type="button" id="back-to-landing-btn">Back to Estimator Types</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="jira-software-script.js"></script>
+</body>
+</html>

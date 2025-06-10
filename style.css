@@ -1,58 +1,85 @@
+/* General Body & Container */
 body {
     font-family: sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 20px;
-    background-image: linear-gradient(to bottom, #1e293b, #334155); /* Gradient from slate-900 to slate-800 */
-    color: white; /* Main text color */
+    background-color: #1b263b; /* Dark blue background from image */
+    color: #f0f2f5; /* Off-white for general text */
 }
 
 .container {
     max-width: 1100px;
     margin: 20px auto;
-    background-color: #334155; /* Solid slate-800 background */
+    background-color: #1b263b; /* Matching the body background */
     padding: 30px;
+    box-shadow: none; /* Removed previous shadow */
     border-radius: 8px;
-    border: 1px solid #2874bc; /* Primary mid-tone blue border */
 }
 
+/* Headings & Text */
 h1, h2 {
-    color: #60a5fa; /* Bright, light blue for headings */
+    color: #60a5fa; /* Light sky blue for main headings */
     text-align: center;
     margin-bottom: 20px;
 }
 
-/* Using a light gray for descriptive paragraphs */
-p {
-    color: #d1d5db; /* text-gray-300 */
+.total-hours h2 {
+    color: #60a5fa;
+    margin-top: 0;
 }
 
+.team-management label,
+.misc-hours label {
+    color: #e0e1dd; /* Light gray for labels */
+    font-weight: bold;
+}
+
+p,
+.selectable-cell {
+    color: #d1d5db; /* Softer gray for descriptive text */
+}
+
+/* Team Management & Input Fields */
 .team-management {
     margin-bottom: 30px;
     padding-bottom: 20px;
-    border-bottom: 1px solid #2874bc; /* Primary mid-tone blue border */
+    border-bottom: 1px solid #415a77; /* Using the input background color for dividers */
     display: flex;
     align-items: center;
     gap: 15px;
     flex-wrap: wrap;
 }
 
-.team-management label {
-    font-weight: bold;
-    color: #add8e6; /* Light, almost cyan blue for labels */
+input[type="text"],
+input[type="number"],
+select {
+    padding: 8px 12px;
+    border: 1px solid #778da9; /* Subtle, slightly lighter border */
+    border-radius: 4px;
+    background-color: #415a77; /* Muted blue for inputs/dropdowns */
+    color: white;
 }
 
 .team-management input[type="text"],
 .team-management select {
-    padding: 8px 12px;
-    border: 1px solid #2874bc; /* Primary mid-tone blue border */
-    border-radius: 4px;
     min-width: 150px;
     flex-grow: 1;
-    background-color: #1c4a76; /* Dark, deep blue for inputs/dropdowns */
-    color: white;
 }
 
+.custom-phase-hours-input {
+    width: 70px;
+    padding: 6px 8px;
+    text-align: right;
+    margin-right: 8px;
+}
+
+.misc-hours input[type="number"] {
+    padding: 8px;
+    width: 80px;
+}
+
+/* Buttons */
 button {
     padding: 10px 20px;
     color: white;
@@ -60,27 +87,38 @@ button {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    background-color: #2874bc; /* Main button color */
+    background-color: #5881b2; /* Main button blue from image */
+    font-weight: bold;
 }
 
 button:hover {
-    background-color: #205c99; /* Darker blue on hover */
-}
-
-#add-team-btn {
-    background-color: #2874bc;
-}
-#add-team-btn:hover {
-    background-color: #205c99;
+    background-color: #4a6c94; /* Slightly darker for hover */
 }
 
 #delete-team-btn {
-    background-color: #ef4444; /* A brighter red for dark mode */
-}
-#delete-team-btn:hover {
-    background-color: #dc2626;
+    background-color: #c94c4c; /* A more muted red to fit the theme */
 }
 
+#delete-team-btn:hover {
+    background-color: #a63d3d;
+}
+
+#clear-all-btn {
+    background-color: #e59f4e; /* A muted orange for warning */
+    color: #1b263b; /* Dark text for contrast */
+}
+
+#clear-all-btn:hover {
+    background-color: #c78841;
+}
+
+#back-to-estimator-btn {
+    display: block;
+    width: fit-content;
+    margin: 20px auto;
+}
+
+/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -89,7 +127,7 @@ table {
 }
 
 th, td {
-    border: 1px solid #2874bc; /* Primary mid-tone blue border */
+    border: 1px solid #415a77; /* Using input color for table borders */
     padding: 15px;
     text-align: left;
     vertical-align: top;
@@ -97,126 +135,47 @@ th, td {
 }
 
 th {
-    background-color: #475569; /* slate-700 for header */
+    background-color: #2a4461; /* A shade between body and input background */
     font-weight: bold;
     vertical-align: middle;
     text-align: center;
 }
 
-/* Column Widths */
+.selectable-cell:hover {
+    background-color: rgba(255, 255, 255, 0.05); /* Very subtle hover */
+}
+
+.selectable-cell.selected {
+    background-color: #415a77; /* Matching input background color */
+    font-weight: bold;
+    color: white;
+}
+
+.custom-hours-row td {
+    background-color: #2a4461; /* Matching table header */
+}
+
+.custom-hours-cell {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Column Widths (Adjusted for better consistency) */
 th:nth-child(1), td:nth-child(1) { width: 15%; }
 th:nth-child(2), td:nth-child(2) { width: 7%; text-align: center; }
 th:nth-child(3), td:nth-child(3) { width: 26%; }
 th:nth-child(4), td:nth-child(4) { width: 26%; }
 th:nth-child(5), td:nth-child(5) { width: 26%; }
 
-/* Selectable cells */
-.selectable-cell {
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-    font-size: 0.9em;
-    line-height: 1.4;
-    color: #d1d5db; /* Lighter text for descriptions */
-}
 
-.selectable-cell:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
-}
-
-.selectable-cell.selected {
-    background-color: #1c4a76; /* Dark, deep blue for selected items */
-    font-weight: bold;
-    color: white;
-}
-
-td:nth-child(2).selectable-cell {
-     vertical-align: middle;
-     text-align: center;
-     font-weight: bold;
-}
-
-/* Custom hours rows */
-.custom-hours-row td {
-    background-color: #1e293b; /* slate-900 */
-}
-.custom-hours-cell {
-    text-align: center;
-    vertical-align: middle;
-}
-.custom-phase-hours-input {
-    width: 70px;
-    padding: 6px 8px;
-    border: 1px solid #2874bc;
-    border-radius: 4px;
-    text-align: right;
-    margin-right: 8px;
-    background-color: #1c4a76; /* Dark, deep blue */
-    color: white;
-}
-
-.misc-hours, .total-hours {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid #2874bc;
-    text-align: right;
-}
-
-.misc-hours label {
-    font-weight: bold;
-    margin-right: 10px;
-    color: #add8e6; /* Light, almost cyan blue */
-}
-
-.misc-hours input[type="number"] {
-    padding: 8px;
-    border: 1px solid #2874bc;
-    border-radius: 4px;
-    width: 80px;
-    background-color: #1c4a76; /* Dark, deep blue */
-    color: white;
-}
-
-.total-hours h2 {
-    text-align: right;
-    color: #60a5fa; /* Bright, light blue */
-    margin-top: 0;
-}
-
-#total-hours-display {
-    font-weight: bold;
-}
-
-.form-actions {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
-}
-
-#view-summary-btn {
-    background-color: #2874bc; /* "Calculate" button color */
-}
-#view-summary-btn:hover {
-    background-color: #205c99;
-}
-
-#clear-all-btn {
-    background-color: #f59e0b; /* Amber/orange for warning */
-    color: #1e293b; /* Dark text for better contrast */
-}
-#clear-all-btn:hover {
-    background-color: #d97706;
-}
-
-/* Summary Page Styles */
+/* Summary Page */
 #summary-table {
-    margin-bottom: 30px;
     table-layout: auto;
+    margin-bottom: 30px;
 }
 #summary-table th, #summary-table td {
-    text-align: center;
-    padding: 10px;
     width: auto;
+    padding: 10px;
 }
 #summary-table td:first-child {
     text-align: left;
@@ -225,31 +184,25 @@ td:nth-child(2).selectable-cell {
 #summary-table td:nth-child(2) {
     text-align: left;
 }
-
-.summary-details {
-    font-size: 0.9em;
-    color: #d1d5db; /* text-gray-300 */
-    line-height: 1.5;
-}
-.summary-details ul {
-    padding-left: 20px;
-    margin: 0;
-}
-.summary-details li {
-    margin-bottom: 5px;
-}
-
 #summary-table tfoot td {
     font-weight: bold;
-    background-color: #475569; /* Matching header background */
+    background-color: #2a4461; /* Matching header */
 }
 
-#back-to-estimator-btn {
-     display: block;
-     width: fit-content;
-     margin: 20px auto;
+/* Landing Page Buttons (Moved from index.html) */
+.estimator-buttons a {
+    display: inline-block;
+    margin: 15px;
+    padding: 20px 40px;
+    font-size: 1.2em;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    background-color: #5881b2; /* Matching the main button color */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-.container p {
-    color: #e5e7eb; /* text-gray-200 */
+.estimator-buttons a:hover {
+    background-color: #4a6c94; /* Matching the button hover color */
 }

@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalHoursDisplay = document.getElementById('total-hours-display');
     const viewSummaryBtn = document.getElementById('view-summary-btn');
     const clearAllBtn = document.getElementById('clear-all-btn');
-    const backToLandingBtn = document.getElementById('back-to-landing-btn-jsm');
+    const backToLandingBtn = document.getElementById('back-to-landing-btn-jsm'); // Correctly finds the new button
 
     // Custom phase hour inputs
     const discoveryHoursInput = document.getElementById('discovery-hours-input');
@@ -324,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
     backToLandingBtn.addEventListener('click', () => {
         window.location.href = 'index.html';
     });
-    
+
     // --- Initial Load ---
     loadTeams();
 });

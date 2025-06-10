@@ -206,3 +206,14 @@ th:nth-child(5), td:nth-child(5) { width: 26%; }
 .estimator-buttons a:hover {
     background-color: #4a6c94; /* Matching the button hover color */
 }
+
+/* Hide the number input spinners */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield; /* For Firefox */
+}

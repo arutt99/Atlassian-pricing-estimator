@@ -40,7 +40,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Ensure all teams have customPhaseHours initialized
                 Object.values(teamsData).forEach(team => {
                     if (!team.customPhaseHours) {
-                        team.customPhaseHours = { 'discovery': 0, 'production-release': 0, 'warranty': 0 };
+                        // Initialize with new defaults if customPhaseHours object doesn't exist
+                        team.customPhaseHours = { 'discovery': 60, 'production-release': 40, 'warranty': 0 };
+                    } else {
+                        // If customPhaseHours exists, check and apply new defaults if specific phases are 0 or undefined
+                        // This handles data from older versions where the default might have been 0
+                        if (team.customPhaseHours['discovery'] === undefined || team.customPhaseHours['discovery'] === 0) {
+                            team.customPhaseHours['discovery'] = 60;
+                        }
+                        if (team.customPhaseHours['production-release'] === undefined || team.customPhaseHours['production-release'] === 0) {
+                            team.customPhaseHours['production-release'] = 40;
+                        }
+                        // Ensure warranty has a default if not set, but don't override if it was explicitly set to something else (even 0)
+                        if (team.customPhaseHours['warranty'] === undefined) {
+                            team.customPhaseHours['warranty'] = 0;
+                        }
                     }
                 });
             } catch (e) {
@@ -82,8 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
             teamsData[teamName] = {
                 selections: {},
                 customPhaseHours: {
-                    'discovery': parseInt(discoveryHoursInput.value, 10) || 0, // Or just 0
-                    'production-release': parseInt(releaseHoursInput.value, 10) || 0,
+                    'discovery': parseInt(discoveryHoursInput.value, 10) || 60,
+                    'production-release': parseInt(releaseHoursInput.value, 10) || 40,
                     'warranty': parseInt(warrantyHoursInput.value, 10) || 0
                 },
                 miscHours: 0,
@@ -183,9 +197,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Reset form to default state (e.g., when no team is selected or all data cleared) ---
     function resetFormToDefaults() {
         clearSelectionsVisually();
-        discoveryHoursInput.value = 0;
-        releaseHoursInput.value = 0;
-        warrantyHoursInput.value = 0;
+        discoveryHoursInput.value = 60; // Default to 60
+        releaseHoursInput.value = 40; // Default to 40
+        warrantyHoursInput.value = 0; // Default to 0 (or specific value if required)
         miscHoursInput.value = 0;
         teamNameInput.value = '';
         // totalHoursDisplay will be updated by calculateTotalHours

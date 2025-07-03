@@ -341,4 +341,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Initial Load ---
     loadTeams();
+    displayHoursInCells(); // Call the function to display hours
+
+    // --- Function to Display Hours in Cells ---
+    function displayHoursInCells() {
+        const rows = estimatorTbody.querySelectorAll('tr[data-hours]');
+        rows.forEach(row => {
+            const hoursData = JSON.parse(row.getAttribute('data-hours'));
+            const cells = row.querySelectorAll('.selectable-cell');
+            cells.forEach(cell => {
+                const value = cell.getAttribute('data-value');
+                if (hoursData[value] !== undefined && value !== 'na') { // Don't display for N/A
+                    // Remove any existing hour display to prevent duplicates on re-renders (if any)
+                    const existingHourDisplay = cell.querySelector('.cell-hours-display');
+                    if (existingHourDisplay) {
+                        existingHourDisplay.remove();
+                    }
+
+                    const hourDisplay = document.createElement('div');
+                    hourDisplay.classList.add('cell-hours-display');
+                    hourDisplay.textContent = `(${hoursData[value]} hrs)`;
+                    cell.appendChild(hourDisplay);
+                }
+            });
+        });
+    }
 });
